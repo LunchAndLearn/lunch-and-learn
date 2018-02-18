@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.com.tw</groupId>
-	<artifactId>ll</artifactId>
+	<artifactId>lunchandlearn</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>ll</name>
-	<description>Demo project for Spring Boot</description>
+	<name>lunchandlearn</name>
+	<description>Lunch and Learn Project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -44,6 +44,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-driver</artifactId>
+			<version>3.2.2</version>
 		</dependency>
 
 	</dependencies>
