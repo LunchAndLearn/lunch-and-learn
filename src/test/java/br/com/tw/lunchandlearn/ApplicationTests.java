@@ -1,4 +1,4 @@
-package br.com.tw.ll;
+package br.com.tw.lunchandlearn;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
