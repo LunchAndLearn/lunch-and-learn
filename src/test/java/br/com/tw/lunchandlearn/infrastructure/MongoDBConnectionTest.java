@@ -11,12 +11,13 @@ import static org.junit.Assert.assertEquals;
 
 public class MongoDBConnectionTest {
 
+    public static final String THOUGHTWORKS = "thoughtworks";
     private MongoClient mongoClient;
 
     @Test
     public void connectToMongoDB() throws Exception {
         String databaseName = "lunchandlearnapp";
-        mongoClient = MongoDBConnection.connect("thoughtworks", "thoughtworks");
+        mongoClient = MongoDBConnection.connect(THOUGHTWORKS, THOUGHTWORKS);
 
         MongoDatabase database = mongoClient.getDatabase(databaseName);
         MongoCollection<Document> user = database.getCollection("user");
