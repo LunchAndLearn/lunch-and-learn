@@ -1,0 +1,5 @@
+profile: integration-test
+
+db:
+  user: thoughtworks
+  password: thoughtworks
