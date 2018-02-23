@@ -12,6 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class MongoDBConnectionTest {
 
     public static final String THOUGHTWORKS = "thoughtworks";
+    public static final String USER_COLLECTION = "user";
     private MongoClient mongoClient;
 
     @Test
@@ -20,7 +21,7 @@ public class MongoDBConnectionTest {
         mongoClient = MongoDBConnection.connect(THOUGHTWORKS, THOUGHTWORKS);
 
         MongoDatabase database = mongoClient.getDatabase(databaseName);
-        MongoCollection<Document> user = database.getCollection("user");
+        MongoCollection<Document> user = database.getCollection(USER_COLLECTION);
 
         assertEquals(databaseName, database.getName());
         assertEquals(1, user.count());
