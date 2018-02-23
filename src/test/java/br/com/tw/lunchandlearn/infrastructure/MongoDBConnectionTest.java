@@ -13,11 +13,12 @@ public class MongoDBConnectionTest {
 
     public static final String THOUGHTWORKS = "thoughtworks";
     public static final String USER_COLLECTION = "user";
+    public static final String LUNCH_AND_LEARN_APP = "lunchandlearnapp";
     private MongoClient mongoClient;
 
     @Test
     public void connectToMongoDB() throws Exception {
-        String databaseName = "lunchandlearnapp";
+        String databaseName = LUNCH_AND_LEARN_APP;
         mongoClient = MongoDBConnection.connect(THOUGHTWORKS, THOUGHTWORKS);
 
         MongoDatabase database = mongoClient.getDatabase(databaseName);
