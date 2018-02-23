@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class MongoDBConnectionTest {
 
     public static final String THOUGHTWORKS = "thoughtworks";
-    public static final String USER_COLLECTION = "user";
+    private static final String USER_COLLECTION = "user";
     private static final String LUNCH_AND_LEARN_APP = "lunchandlearnapp";
     private MongoClient mongoClient;
 
