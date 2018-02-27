@@ -1,7 +1,0 @@
-spring:
-  data:
-    mongodb:
-      host: ds239968.mlab.com:39968
-      database: lunchandlearnapp
-      username: thoughtworks
-      password: thoughtworks

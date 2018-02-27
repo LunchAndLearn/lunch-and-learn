@@ -8,4 +8,7 @@ public class User {
     public String id;
     public String name;
 
+    public User(String name) {
+        this.name = name;
+    }
 }
