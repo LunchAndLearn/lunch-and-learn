@@ -11,19 +11,18 @@ import static org.junit.Assert.assertEquals;
 
 public class MongoDBConnectionTest {
 
-    public static final String THOUGHTWORKS = "thoughtworks";
+    private static final String USER_PASSWORD = "thoughtworks";
+    private static final String LUNCH_AND_LEARN_APP = "lunchandlearnapp";
     private MongoClient mongoClient;
 
     @Test
     public void connectToMongoDB() throws Exception {
-        String databaseName = "lunchandlearnapp";
-        mongoClient = MongoDBConnection.connect(THOUGHTWORKS, THOUGHTWORKS);
+        String databaseName = LUNCH_AND_LEARN_APP;
+        mongoClient = MongoDBConnection.connect(USER_PASSWORD, USER_PASSWORD);
 
         MongoDatabase database = mongoClient.getDatabase(databaseName);
-        MongoCollection<Document> user = database.getCollection("user");
 
         assertEquals(databaseName, database.getName());
-        assertEquals(1, user.count());
     }
 
     @After
