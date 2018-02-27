@@ -48,17 +48,6 @@
 
 	</dependencies>
 
-	<profiles>
-		<profile>
-			<id>integration-test</id>
-			<properties>
-				<build.profile.id>integration-test</build.profile.id>
-				<skip.integration.tests>false</skip.integration.tests>
-				<skip.unit.tests>true</skip.unit.tests>
-			</properties>
-		</profile>
-	</profiles>
-
 	<build>
 		<resources>
 			<resource>
@@ -91,22 +80,6 @@
 							</sources>
 						</configuration>
 					</execution>
-
-					<execution>
-						<id>add-integration-test-resources</id>
-						<phase>generate-test-resources</phase>
-						<goals>
-							<goal>add-test-resource</goal>
-						</goals>
-						<configuration>
-							<resources>
-								<resource>
-									<filtering>true</filtering>
-									<directory>src/integration-test/resources</directory>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
 				</executions>
 			</plugin>
 
@@ -114,7 +87,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<skipTests>${skip.unit.tests}</skipTests>
 					<excludes>
 						<exclude>**/*IntegrationTest.java</exclude>
 						<exclude>**/*IT.java</exclude>
@@ -133,15 +105,15 @@
 							<goal>integration-test</goal>
 							<goal>verify</goal>
 						</goals>
-						<configuration>
-							<includes>
-								<include>**/*IntegrationTest.java</include>
-							</includes>
-							<skipTests>${skip.integration.tests}</skipTests>
-						</configuration>
 					</execution>
 				</executions>
+				<configuration>
+					<includes>
+						<include>**/*IntegrationTest.java</include>
+					</includes>
+				</configuration>
 			</plugin>
+
 
 		</plugins>
 	</build>
