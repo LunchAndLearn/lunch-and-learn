@@ -1,5 +1,6 @@
 package br.com.tw.lunchandlearn.infrastructure;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,11 +19,6 @@ public class UserRepositoryIntegrationTest {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Before
-    public void setUp() {
-        userRepository.deleteAll();
-    }
 
     @Test
     public void countUsers() {
@@ -49,5 +45,10 @@ public class UserRepositoryIntegrationTest {
 
         assertThat(userFound.id, is(not(nullValue())));
         assertThat(userFound.name, is("New User Name"));
+    }
+
+    @After
+    public void tearDown() {
+        userRepository.deleteAll();
     }
 }
