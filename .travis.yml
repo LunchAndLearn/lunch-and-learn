@@ -4,9 +4,3 @@ language: java
 
 install:
   - mvn install
-
-deploy:
-  provider: heroku
-  api_key:
-    secure: ${API_KEY}
-  app: lunchandlearnapp
