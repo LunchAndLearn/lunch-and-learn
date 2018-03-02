@@ -37,7 +37,7 @@ public class UserRepositoryIntegrationTest {
     }
 
     @Test
-    public void findUser() {
+    public void findUserByName() {
         User user = new User("New User Name");
         userRepository.save(user);
 
