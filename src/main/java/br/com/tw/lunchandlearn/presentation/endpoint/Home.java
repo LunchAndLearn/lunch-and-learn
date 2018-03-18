@@ -1,4 +1,4 @@
-package br.com.tw.lunchandlearn.endpoint;
+package br.com.tw.lunchandlearn.presentation.endpoint;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

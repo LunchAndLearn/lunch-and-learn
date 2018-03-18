@@ -1,6 +1,6 @@
 package br.com.tw.lunchandlearn;
 
-import br.com.tw.lunchandlearn.endpoint.Home;
+import br.com.tw.lunchandlearn.presentation.endpoint.Home;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package br.com.tw.lunchandlearn.endpoint;
+package br.com.tw.lunchandlearn.presentation.endpoint;
 
 import org.junit.Test;
 
