@@ -27,7 +27,10 @@ public class ApplicationIntegrationTest {
     @Test
     public void contextLoads() {
         String port = environment.getProperty("local.server.port");
-        CredentialsRequest credentialRequest = new CredentialsRequest("fulano123", "fulanocomfome");
+        CredentialsRequest credentialRequest = new CredentialsRequest();
+        credentialRequest.username = "fulano123";
+        credentialRequest.password = "fulanocomfome";
+
         ResponseEntity<UserResponse> response = testRestTemplate.postForEntity("http://localhost:" + port + "/login", credentialRequest, UserResponse.class);
 
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
