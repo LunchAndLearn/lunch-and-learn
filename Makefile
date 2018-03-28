@@ -14,4 +14,4 @@ test: start-mongo
 	./mvnw clean verify -DargLine="-Dspring.profiles.active=$(PROFILE)"
 
 start:
-	./mvnw spring-boot:run -DargLine="-Dspring.profiles.active=$(PROFILE)"
+	./mvnw spring-boot:run -Drun.arguments="--spring.profiles.active=$(PROFILE)"

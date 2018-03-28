@@ -32,7 +32,7 @@ public class AuthenticationTest {
     private Authentication authentication;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         credentialsRequest = new CredentialsRequest();
         credentialsRequest.username = USERNAME;
         credentialsRequest.password = VALID_PASSWORD;
@@ -41,7 +41,7 @@ public class AuthenticationTest {
     }
 
     @Test
-    public void shouldCallPasswordEncoderMatches() throws Exception {
+    public void shouldCallPasswordEncoderMatches() {
         authentication.login(credentialsRequest);
 
         verify(passwordEncoder).matches(VALID_PASSWORD, ENCRYPTED_PASSWORD);
@@ -59,7 +59,7 @@ public class AuthenticationTest {
     }
 
     @Test
-    public void shouldLoginFailWhenIsWrongPassword() throws Exception {
+    public void shouldLoginFailWhenIsWrongPassword() {
         credentialsRequest.password = "fulanosatisfeito";
         ResponseEntity<UserResponse> userResponse =  authentication.login(credentialsRequest);
 
@@ -68,7 +68,7 @@ public class AuthenticationTest {
     }
 
     @Test
-    public void shouldLoginFailWhenIsWrongUsername() throws Exception {
+    public void shouldLoginFailWhenIsWrongUsername() {
         credentialsRequest.username = "fulano678";
         ResponseEntity<UserResponse> userResponse =  authentication.login(credentialsRequest);
 

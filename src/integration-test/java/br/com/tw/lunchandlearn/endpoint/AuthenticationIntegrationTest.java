@@ -1,7 +1,5 @@
-package br.com.tw.lunchandlearn;
+package br.com.tw.lunchandlearn.endpoint;
 
-import br.com.tw.lunchandlearn.endpoint.CredentialsRequest;
-import br.com.tw.lunchandlearn.endpoint.UserResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,7 @@ import static org.hamcrest.core.Is.is;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ApplicationIntegrationTest {
+public class AuthenticationIntegrationTest {
 
     private TestRestTemplate testRestTemplate = new TestRestTemplate();
 

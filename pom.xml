@@ -92,7 +92,19 @@
 						</goals>
 						<configuration>
 							<sources>
-								<source>src/integration-test/java</source>
+								<source>src/test/integration-test/java</source>
+							</sources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>add-unit-test-sources</id>
+						<phase>generate-test-sources</phase>
+						<goals>
+							<goal>add-test-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/test/unitTest/java</source>
 							</sources>
 						</configuration>
 					</execution>
@@ -129,7 +141,6 @@
 					</includes>
 				</configuration>
 			</plugin>
-
 
 		</plugins>
 	</build>
