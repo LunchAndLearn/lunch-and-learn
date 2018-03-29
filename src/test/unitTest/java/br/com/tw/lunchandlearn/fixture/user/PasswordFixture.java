@@ -1,6 +1,6 @@
-package br.com.tw.lunchandlearn.fixture;
+package br.com.tw.lunchandlearn.fixture.user;
 
-import br.com.tw.lunchandlearn.domain.Password;
+import br.com.tw.lunchandlearn.domain.user.Password;
 
 public class PasswordFixture {
 

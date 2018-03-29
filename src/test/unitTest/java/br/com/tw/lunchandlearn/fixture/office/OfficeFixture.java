@@ -1,6 +1,6 @@
-package br.com.tw.lunchandlearn.fixture;
+package br.com.tw.lunchandlearn.fixture.office;
 
-import br.com.tw.lunchandlearn.domain.Office;
+import br.com.tw.lunchandlearn.domain.office.Office;
 
 public class OfficeFixture {
 

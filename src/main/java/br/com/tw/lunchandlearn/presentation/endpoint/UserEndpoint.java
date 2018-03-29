@@ -1,7 +1,7 @@
 package br.com.tw.lunchandlearn.presentation.endpoint;
 
-import br.com.tw.lunchandlearn.domain.User;
-import br.com.tw.lunchandlearn.domain.UserFactory;
+import br.com.tw.lunchandlearn.domain.user.User;
+import br.com.tw.lunchandlearn.domain.user.UserFactory;
 import br.com.tw.lunchandlearn.infrastructure.user.UserEntity;
 import br.com.tw.lunchandlearn.infrastructure.user.UserRepository;
 import br.com.tw.lunchandlearn.presentation.request.UserRequest;

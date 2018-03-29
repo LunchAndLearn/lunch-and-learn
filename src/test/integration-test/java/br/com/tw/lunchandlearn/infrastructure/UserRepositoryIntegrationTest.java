@@ -1,6 +1,6 @@
 package br.com.tw.lunchandlearn.infrastructure;
 
-import br.com.tw.lunchandlearn.fixture.UserEntityFixture;
+import br.com.tw.lunchandlearn.fixture.user.UserEntityFixture;
 import br.com.tw.lunchandlearn.infrastructure.user.UserEntity;
 import br.com.tw.lunchandlearn.infrastructure.user.UserRepository;
 import org.junit.After;

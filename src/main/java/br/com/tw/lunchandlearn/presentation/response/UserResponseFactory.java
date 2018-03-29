@@ -1,6 +1,6 @@
 package br.com.tw.lunchandlearn.presentation.response;
 
-import br.com.tw.lunchandlearn.domain.User;
+import br.com.tw.lunchandlearn.domain.user.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

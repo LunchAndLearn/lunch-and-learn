@@ -1,4 +1,4 @@
-package br.com.tw.lunchandlearn.fixture;
+package br.com.tw.lunchandlearn.fixture.user;
 
 import br.com.tw.lunchandlearn.presentation.response.UserResponse;
 

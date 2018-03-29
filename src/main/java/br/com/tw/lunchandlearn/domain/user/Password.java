@@ -1,4 +1,4 @@
-package br.com.tw.lunchandlearn.domain;
+package br.com.tw.lunchandlearn.domain.user;
 
 public class Password {
 

@@ -1,4 +1,4 @@
-package br.com.tw.lunchandlearn.domain;
+package br.com.tw.lunchandlearn.domain.user;
 
 import br.com.tw.lunchandlearn.infrastructure.user.UserEntity;
 import org.springframework.stereotype.Component;

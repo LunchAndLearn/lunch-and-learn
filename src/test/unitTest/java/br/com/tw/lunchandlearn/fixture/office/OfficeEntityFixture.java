@@ -1,4 +1,4 @@
-package br.com.tw.lunchandlearn.fixture;
+package br.com.tw.lunchandlearn.fixture.office;
 
 import br.com.tw.lunchandlearn.infrastructure.office.OfficeEntity;
 

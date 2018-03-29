@@ -1,8 +1,9 @@
-package br.com.tw.lunchandlearn.fixture;
+package br.com.tw.lunchandlearn.fixture.user;
 
-import br.com.tw.lunchandlearn.domain.Office;
-import br.com.tw.lunchandlearn.domain.Password;
-import br.com.tw.lunchandlearn.domain.User;
+import br.com.tw.lunchandlearn.domain.office.Office;
+import br.com.tw.lunchandlearn.domain.user.Password;
+import br.com.tw.lunchandlearn.domain.user.User;
+import br.com.tw.lunchandlearn.fixture.office.OfficeFixture;
 
 public class UserFixture {
 

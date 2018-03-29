@@ -1,8 +1,8 @@
 package br.com.tw.lunchandlearn.presentation.response;
 
-import br.com.tw.lunchandlearn.domain.User;
-import br.com.tw.lunchandlearn.fixture.UserFixture;
-import br.com.tw.lunchandlearn.fixture.UserResponseFixture;
+import br.com.tw.lunchandlearn.domain.user.User;
+import br.com.tw.lunchandlearn.fixture.user.UserFixture;
+import br.com.tw.lunchandlearn.fixture.user.UserResponseFixture;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
