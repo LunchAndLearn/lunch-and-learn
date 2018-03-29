@@ -1,9 +1,12 @@
 package br.com.tw.lunchandlearn.presentation.endpoint;
 
-import br.com.tw.lunchandlearn.infrastructure.User;
-import br.com.tw.lunchandlearn.infrastructure.UserRepository;
+import br.com.tw.lunchandlearn.domain.User;
+import br.com.tw.lunchandlearn.domain.UserFactory;
+import br.com.tw.lunchandlearn.infrastructure.user.UserEntity;
+import br.com.tw.lunchandlearn.infrastructure.user.UserRepository;
 import br.com.tw.lunchandlearn.presentation.request.UserRequest;
 import br.com.tw.lunchandlearn.presentation.response.UserResponse;
+import br.com.tw.lunchandlearn.presentation.response.UserResponseFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +23,19 @@ public class UserEndpoint {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserResponseFactory userResponseFactory;
+
+    @Autowired
+    private UserFactory userFactory;
+
     @RequestMapping(name = "/users")
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public List<UserResponse> findAll() {
+        List<UserEntity> userEntities = userRepository.findAll();
+
+        List<User> users = userFactory.fromUserEntity(userEntities);
+
+        return userResponseFactory.fromUsers(users);
     }
 
     @RequestMapping(name = "/users", method = POST, produces = {"application/json"})

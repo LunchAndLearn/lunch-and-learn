@@ -1,5 +1,8 @@
 package br.com.tw.lunchandlearn.infrastructure;
 
+import br.com.tw.lunchandlearn.fixture.UserEntityFixture;
+import br.com.tw.lunchandlearn.infrastructure.user.UserEntity;
+import br.com.tw.lunchandlearn.infrastructure.user.UserRepository;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,22 +31,25 @@ public class UserRepositoryIntegrationTest {
 
     @Test
     public void createUser() {
-        User user = new User("New User Name");
+        UserEntity user = UserEntityFixture.anUserFixture()
+                .build();
 
-        User userSaved = userRepository.save(user);
+        UserEntity userSaved = userRepository.save(user);
 
         assertThat(userSaved.id, is(not(nullValue())));
     }
 
     @Test
     public void findUserByName() {
-        User user = new User("New User Name");
+        UserEntity user = UserEntityFixture.anUserFixture()
+                .build();
+
         userRepository.save(user);
 
-        User userFound = userRepository.findByName("New User Name");
+        UserEntity userFound = userRepository.findByName("Name");
 
         assertThat(userFound.id, is(not(nullValue())));
-        assertThat(userFound.name, is("New User Name"));
+        assertThat(userFound.name, is("Name"));
     }
 
     @After
