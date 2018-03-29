@@ -1,5 +1,7 @@
 package br.com.tw.lunchandlearn.endpoint;
 
+import br.com.tw.lunchandlearn.endpoint.CredentialsRequest;
+import br.com.tw.lunchandlearn.endpoint.UserResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
