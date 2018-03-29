@@ -1,6 +1,7 @@
 package br.com.tw.lunchandlearn.application.endpoint.authentication;
 
 import br.com.tw.lunchandlearn.application.endpoint.UserResponse;
+import br.com.tw.lunchandlearn.domain.authentication.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;

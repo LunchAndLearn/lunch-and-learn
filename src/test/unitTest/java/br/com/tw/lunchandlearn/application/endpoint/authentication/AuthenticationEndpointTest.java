@@ -1,7 +1,7 @@
 package br.com.tw.lunchandlearn.application.endpoint.authentication;
 
 import br.com.tw.lunchandlearn.application.endpoint.UserResponse;
-import br.com.tw.lunchandlearn.domain.exception.ApiException;
+import br.com.tw.lunchandlearn.domain.base.exception.ApiException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -16,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.nullValue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

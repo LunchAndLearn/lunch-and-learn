@@ -1,9 +1,8 @@
 package br.com.tw.lunchandlearn.application.endpoint.authentication;
 
 import br.com.tw.lunchandlearn.application.endpoint.UserResponse;
-import br.com.tw.lunchandlearn.application.endpoint.authentication.CredentialsRequest;
-import br.com.tw.lunchandlearn.domain.exception.ApiExceptionCode;
 import br.com.tw.lunchandlearn.application.handler.ApiExceptionResponse;
+import br.com.tw.lunchandlearn.domain.base.exception.ApiExceptionCode;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

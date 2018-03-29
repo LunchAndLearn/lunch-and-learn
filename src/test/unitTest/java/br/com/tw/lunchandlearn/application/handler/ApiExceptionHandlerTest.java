@@ -1,6 +1,7 @@
 package br.com.tw.lunchandlearn.application.handler;
 
-import br.com.tw.lunchandlearn.domain.exception.ApiException;
+import br.com.tw.lunchandlearn.domain.base.exception.ApiException;
+import br.com.tw.lunchandlearn.domain.base.exception.ApiExceptionCode;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +17,8 @@ public class ApiExceptionHandlerTest {
 
         ApiException apiException = new ApiException() {
             @Override
-            public HttpStatus getHttpStatusCode() {
-                return HttpStatus.CONFLICT;
-            }
-
-            @Override
-            public int getApiExceptionCode() {
-                return 123;
+            public ApiExceptionCode getApiExceptionCode() {
+                return ApiExceptionCode.INVALID_CREDENTIALS;
             }
 
             @Override
@@ -33,8 +29,8 @@ public class ApiExceptionHandlerTest {
 
         ResponseEntity<ApiExceptionResponse> response = apiExceptionHandler.handleExceptions(apiException);
 
-        assertThat(response.getStatusCode(), is(HttpStatus.CONFLICT));
-        assertThat(response.getBody().code, is(123));
+        assertThat(response.getStatusCode(), is(HttpStatus.UNAUTHORIZED));
+        assertThat(response.getBody().code, is(ApiExceptionCode.INVALID_CREDENTIALS.getCode()));
         assertThat(response.getBody().message, is("Exception Custom Message"));
     }
 
@@ -52,7 +48,7 @@ public class ApiExceptionHandlerTest {
         ResponseEntity<ApiExceptionResponse> response = apiExceptionHandler.handleErrors(exception);
 
         assertThat(response.getStatusCode(), is(HttpStatus.INTERNAL_SERVER_ERROR));
-        assertThat(response.getBody().code, is(1));
+        assertThat(response.getBody().code, is(ApiExceptionCode.UNDEFINED_ERROR.getCode()));
         assertThat(response.getBody().message, is("Error"));
     }
 }

@@ -1,7 +1,7 @@
 package br.com.tw.lunchandlearn.application.handler;
 
-import br.com.tw.lunchandlearn.domain.exception.ApiException;
-import br.com.tw.lunchandlearn.domain.exception.ApiExceptionCode;
+import br.com.tw.lunchandlearn.domain.base.exception.ApiException;
+import br.com.tw.lunchandlearn.domain.base.exception.ApiExceptionCode;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -17,10 +17,12 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @Order(Ordered.HIGHEST_PRECEDENCE)
     protected ResponseEntity<ApiExceptionResponse> handleExceptions(ApiException apiException) {
         ApiExceptionResponse apiExceptionResponse = new ApiExceptionResponse();
-        apiExceptionResponse.code = apiException.getApiExceptionCode();
+        apiExceptionResponse.code = apiException.getApiExceptionCode().getCode();
         apiExceptionResponse.message = apiException.getMessage();
 
-        return ResponseEntity.status(apiException.getHttpStatusCode()).body(apiExceptionResponse);
+        HttpStatus httpStatus = HttpStatusCodeFactory.fromApiExceptionCode(apiException.getApiExceptionCode());
+
+        return ResponseEntity.status(httpStatus).body(apiExceptionResponse);
     }
 
     @ExceptionHandler(value = { Exception.class })
@@ -29,6 +31,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         apiExceptionResponse.code = ApiExceptionCode.UNDEFINED_ERROR.getCode();
         apiExceptionResponse.message = exception.getMessage();
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiExceptionResponse);
+        HttpStatus httpStatus = HttpStatusCodeFactory.fromApiExceptionCode(ApiExceptionCode.UNDEFINED_ERROR);
+
+        return ResponseEntity.status(httpStatus).body(apiExceptionResponse);
     }
 }

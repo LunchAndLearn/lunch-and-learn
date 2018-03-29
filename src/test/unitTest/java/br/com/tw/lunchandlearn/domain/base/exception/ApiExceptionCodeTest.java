@@ -1,4 +1,4 @@
-package br.com.tw.lunchandlearn.domain.exception;
+package br.com.tw.lunchandlearn.domain.base.exception;
 
 import org.junit.Test;
 
