@@ -1,7 +1,7 @@
-package br.com.tw.lunchandlearn.endpoint;
+package br.com.tw.lunchandlearn.application.endpoint.authentication;
 
+import br.com.tw.lunchandlearn.application.endpoint.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/login")
-public class Authentication {
+public class AuthenticationEndpoint {
 
     private static final String ENCRYPTED = "$2a$10$dDWf0kiLKrsoFr89QKOoeeySRFAaLtMs3rTJCc1d8CFEekU8TCcg2";
     private static final String USERNAME = "fulano123";
@@ -30,9 +30,9 @@ public class Authentication {
             userResponse.office = "Belzonte";
 
             return ResponseEntity.ok(userResponse);
+        } else {
+            throw new AuthenticationException();
         }
-
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
     private boolean isValidCredentials(CredentialsRequest credentialsRequest) {

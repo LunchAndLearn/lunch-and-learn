@@ -1,4 +1,4 @@
-package br.com.tw.lunchandlearn.endpoint;
+package br.com.tw.lunchandlearn.application.endpoint.authentication;
 
 public class CredentialsRequest {
     public String username;
