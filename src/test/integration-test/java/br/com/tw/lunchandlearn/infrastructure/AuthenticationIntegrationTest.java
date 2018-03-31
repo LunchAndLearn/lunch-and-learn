@@ -1,6 +1,7 @@
-package br.com.tw.lunchandlearn.endpoint;
+package br.com.tw.lunchandlearn.infrastructure;
 
 import br.com.tw.lunchandlearn.presentation.request.CredentialsRequest;
+import br.com.tw.lunchandlearn.presentation.response.UserResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,9 @@ public class AuthenticationIntegrationTest {
         ResponseEntity<UserResponse> response = testRestTemplate.postForEntity("http://localhost:" + port + "/login", credentialRequest, UserResponse.class);
 
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
-        assertThat(response.getBody().firstName, is("Fulano"));
+        assertThat(response.getBody().name, is("Fulano"));
         assertThat(response.getBody().lastName, is("Ciclano"));
-        assertThat(response.getBody().username, is("fulano123"));
+        assertThat(response.getBody().user, is("fulano123"));
     }
 
 }
