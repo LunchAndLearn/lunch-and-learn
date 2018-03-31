@@ -1,4 +1,4 @@
-package br.com.tw.lunchandlearn.infrastructure;
+package br.com.tw.lunchandlearn.endpoint;
 
 import br.com.tw.lunchandlearn.presentation.request.CredentialsRequest;
 import br.com.tw.lunchandlearn.presentation.response.UserResponse;

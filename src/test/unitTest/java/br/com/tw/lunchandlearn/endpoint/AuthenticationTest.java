@@ -2,6 +2,7 @@ package br.com.tw.lunchandlearn.endpoint;
 
 import br.com.tw.lunchandlearn.presentation.endpoint.Authentication;
 import br.com.tw.lunchandlearn.presentation.request.CredentialsRequest;
+import br.com.tw.lunchandlearn.presentation.response.UserResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,9 +55,9 @@ public class AuthenticationTest {
         ResponseEntity<UserResponse> userResponse =  authentication.login(credentialsRequest);
 
         assertThat(userResponse.getStatusCode(), is(HttpStatus.OK));
-        assertThat(userResponse.getBody().firstName, is("Fulano"));
+        assertThat(userResponse.getBody().name, is("Fulano"));
         assertThat(userResponse.getBody().lastName, is("Ciclano"));
-        assertThat(userResponse.getBody().username, is("fulano123"));
+        assertThat(userResponse.getBody().user, is("fulano123"));
         assertThat(userResponse.getBody().office, is("Belzonte"));
     }
 
