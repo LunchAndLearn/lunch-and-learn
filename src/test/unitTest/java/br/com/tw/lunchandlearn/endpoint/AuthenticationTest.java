@@ -58,7 +58,7 @@ public class AuthenticationTest {
         assertThat(userResponse.getBody().name, is("Fulano"));
         assertThat(userResponse.getBody().lastName, is("Ciclano"));
         assertThat(userResponse.getBody().user, is("fulano123"));
-        assertThat(userResponse.getBody().office, is("Belzonte"));
+        assertThat(userResponse.getBody().office.name, is("Belzonte"));
     }
 
     @Test
