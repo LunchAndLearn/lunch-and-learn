@@ -1,7 +1,7 @@
-package br.com.tw.lunchandlearn.application.endpoint.authentication;
+package br.com.tw.lunchandlearn.presentation.endpoint.authentication;
 
-import br.com.tw.lunchandlearn.application.endpoint.UserResponse;
-import br.com.tw.lunchandlearn.application.handler.ApiExceptionResponse;
+import br.com.tw.lunchandlearn.presentation.endpoint.UserResponse;
+import br.com.tw.lunchandlearn.presentation.handler.ApiExceptionResponse;
 import br.com.tw.lunchandlearn.domain.base.exception.ApiExceptionCode;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package br.com.tw.lunchandlearn.application.handler;
+package br.com.tw.lunchandlearn.presentation.handler;
 
 public class ApiExceptionResponse {
 

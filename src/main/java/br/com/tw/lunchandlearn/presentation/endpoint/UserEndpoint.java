@@ -1,4 +1,4 @@
-package br.com.tw.lunchandlearn.application.endpoint;
+package br.com.tw.lunchandlearn.presentation.endpoint;
 
 import br.com.tw.lunchandlearn.infrastructure.User;
 import br.com.tw.lunchandlearn.infrastructure.UserRepository;

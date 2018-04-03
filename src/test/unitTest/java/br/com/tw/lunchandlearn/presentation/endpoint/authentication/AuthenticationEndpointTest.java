@@ -1,6 +1,6 @@
-package br.com.tw.lunchandlearn.application.endpoint.authentication;
+package br.com.tw.lunchandlearn.presentation.endpoint.authentication;
 
-import br.com.tw.lunchandlearn.application.endpoint.UserResponse;
+import br.com.tw.lunchandlearn.presentation.endpoint.UserResponse;
 import br.com.tw.lunchandlearn.domain.base.exception.ApiException;
 import org.junit.Before;
 import org.junit.Rule;

@@ -1,4 +1,4 @@
-package br.com.tw.lunchandlearn.application.handler;
+package br.com.tw.lunchandlearn.presentation.handler;
 
 import br.com.tw.lunchandlearn.domain.base.exception.ApiExceptionCode;
 import org.springframework.http.HttpStatus;
