@@ -20,7 +20,7 @@ import static org.hamcrest.core.Is.is;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class UserEndpointTest {
+public class UserEndpointIntegrationTest {
 
     private TestRestTemplate testRestTemplate = new TestRestTemplate();
 
