@@ -1,7 +1,11 @@
-package br.com.tw.lunchandlearn.endpoint;
+package br.com.tw.lunchandlearn.presentation.endpoint.authentication;
 
+import br.com.tw.lunchandlearn.presentation.endpoint.UserResponse;
+import br.com.tw.lunchandlearn.domain.base.exception.ApiException;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -12,24 +16,26 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.nullValue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AuthenticationTest {
+public class AuthenticationEndpointTest {
 
     private static final String ENCRYPTED_PASSWORD = "$2a$10$dDWf0kiLKrsoFr89QKOoeeySRFAaLtMs3rTJCc1d8CFEekU8TCcg2";
     private static final String USERNAME = "fulano123";
     private static final String VALID_PASSWORD = "fulanocomfome";
 
-    private CredentialsRequest credentialsRequest;
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
 
     @Mock
     private PasswordEncoder passwordEncoder;
 
     @InjectMocks
-    private Authentication authentication;
+    private AuthenticationEndpoint authenticationEndpoint;
+
+    private CredentialsRequest credentialsRequest;
 
     @Before
     public void setUp() {
@@ -42,14 +48,14 @@ public class AuthenticationTest {
 
     @Test
     public void shouldCallPasswordEncoderMatches() {
-        authentication.login(credentialsRequest);
+        authenticationEndpoint.login(credentialsRequest);
 
         verify(passwordEncoder).matches(VALID_PASSWORD, ENCRYPTED_PASSWORD);
     }
 
     @Test
     public void shouldLoginWithSuccess() {
-        ResponseEntity<UserResponse> userResponse =  authentication.login(credentialsRequest);
+        ResponseEntity<UserResponse> userResponse =  authenticationEndpoint.login(credentialsRequest);
 
         assertThat(userResponse.getStatusCode(), is(HttpStatus.OK));
         assertThat(userResponse.getBody().firstName, is("Fulano"));
@@ -59,20 +65,20 @@ public class AuthenticationTest {
     }
 
     @Test
-    public void shouldLoginFailWhenIsWrongPassword() {
-        credentialsRequest.password = "fulanosatisfeito";
-        ResponseEntity<UserResponse> userResponse =  authentication.login(credentialsRequest);
+    public void throwsExceptionWhenLoginFailWithWrongPassword() {
+        expectedException.expect(ApiException.class);
+        expectedException.expectMessage("Your credentials are invalid.");
 
-        assertThat(userResponse.getStatusCode(), is(HttpStatus.UNAUTHORIZED));
-        assertThat(userResponse.getBody(), is(nullValue()));
+        credentialsRequest.password = "fulanosatisfeito";
+        authenticationEndpoint.login(credentialsRequest);
     }
 
     @Test
-    public void shouldLoginFailWhenIsWrongUsername() {
-        credentialsRequest.username = "fulano678";
-        ResponseEntity<UserResponse> userResponse =  authentication.login(credentialsRequest);
+    public void throwsExceptionWhenLoginFailWithWrongUsername() {
+        expectedException.expect(ApiException.class);
+        expectedException.expectMessage("Your credentials are invalid.");
 
-        assertThat(userResponse.getStatusCode(), is(HttpStatus.UNAUTHORIZED));
-        assertThat(userResponse.getBody(), is(nullValue()));
+        credentialsRequest.username = "fulano678";
+        authenticationEndpoint.login(credentialsRequest);
     }
 }
