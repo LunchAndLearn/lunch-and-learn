@@ -1,8 +1,10 @@
 package br.com.tw.lunchandlearn.presentation.endpoint.authentication;
 
+import br.com.tw.lunchandlearn.domain.authentication.AuthenticationService;
 import br.com.tw.lunchandlearn.presentation.endpoint.UserResponse;
 import br.com.tw.lunchandlearn.domain.authentication.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +22,8 @@ public class AuthenticationEndpoint {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    private AuthenticationService authenticationService;
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<UserResponse> login(@RequestBody CredentialsRequest credentialsRequest) {
 
@@ -34,6 +38,11 @@ public class AuthenticationEndpoint {
         } else {
             throw new AuthenticationException();
         }
+    }
+
+    public ResponseEntity<UserResponse> loginWithService(CredentialsRequest credentialsRequest) {
+        UserResponse userResponse = authenticationService.authenticate(credentialsRequest);
+        return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
 
     private boolean isValidCredentials(CredentialsRequest credentialsRequest) {

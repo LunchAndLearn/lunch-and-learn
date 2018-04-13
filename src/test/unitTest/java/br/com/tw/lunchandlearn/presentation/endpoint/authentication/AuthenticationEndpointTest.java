@@ -1,5 +1,7 @@
 package br.com.tw.lunchandlearn.presentation.endpoint.authentication;
 
+import br.com.tw.lunchandlearn.domain.authentication.AuthenticationException;
+import br.com.tw.lunchandlearn.domain.authentication.AuthenticationService;
 import br.com.tw.lunchandlearn.presentation.endpoint.UserResponse;
 import br.com.tw.lunchandlearn.domain.base.exception.ApiException;
 import org.junit.Before;
@@ -31,6 +33,9 @@ public class AuthenticationEndpointTest {
 
     @Mock
     private PasswordEncoder passwordEncoder;
+
+    @Mock
+    private AuthenticationService authenticationService;
 
     @InjectMocks
     private AuthenticationEndpoint authenticationEndpoint;
@@ -80,5 +85,38 @@ public class AuthenticationEndpointTest {
 
         credentialsRequest.username = "fulano678";
         authenticationEndpoint.login(credentialsRequest);
+    }
+
+    @Test
+    public void callsAuthenticationServicePassingCredentialsRequest() {
+        authenticationEndpoint.loginWithService(credentialsRequest);
+
+        verify(authenticationService).authenticate(credentialsRequest);
+    }
+
+    @Test
+    public void returnsHttpStatusOKWhenCredentialsAreValid() {
+        when(authenticationService.authenticate(credentialsRequest)).thenReturn(new UserResponse());
+
+        ResponseEntity responseEntity = authenticationEndpoint.loginWithService(credentialsRequest);
+
+        assertThat(responseEntity.getStatusCode(), is(HttpStatus.OK));
+    }
+
+    @Test(expected = AuthenticationException.class)
+    public void throwsAuthenticationExceptionWhenCredentialsAreInvalid() {
+        when(authenticationService.authenticate(credentialsRequest)).thenThrow(new AuthenticationException());
+
+        authenticationEndpoint.loginWithService(credentialsRequest);
+    }
+
+    @Test
+    public void returnsUserResponseWhenCredentialsAreValid() {
+        UserResponse userResponse = new UserResponse();
+        when(authenticationService.authenticate(credentialsRequest)).thenReturn(userResponse);
+
+        ResponseEntity<UserResponse> responseEntity = authenticationEndpoint.loginWithService(credentialsRequest);
+
+        assertThat(responseEntity.getBody(), is(userResponse));
     }
 }
