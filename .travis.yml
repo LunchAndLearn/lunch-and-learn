@@ -7,7 +7,10 @@ services:
 deploy:
   provider: heroku
   api_key:
-    secure: ${API_HEROKU}
+    secure: "Ex0iCp6dFTHVrOAUyLAjSchy6CjngeAAvft0wDa6/YwhKdeHon4w+3jjWZpoKzQPb47EenN7sz+U52hkalEd8rkVsbviG2G/Uba1U/ewNjjK7iie2FayJ1jQJnnBH7+ctYEL+qOmAse7musnKI5CKBN8M/bBoYHczbEFHidQ1KzkfHPSfduOIhZzDeGNIwhUrnc5SJbh7T5cvVHAKOvYr7ORJwxEdpD0KtdMAsLLDE8/EJ1JpIsA2r9pyoGVo+hwr7+wFc1fletdBSZ/QjZwL5gMuwQDel1XV61QqrMPeWcRw+00VQZ/rZ2n3C1Nfh2wDxhxjUEbh1wnsGGNZ5dpiafSmijP9w3RHw8ZHXxAx8Ja7HdjFrAM/oiicQiXRV96lFLF0lEHxqMy/FgUlcAEW/qC7IplUZYEoaIG/QocW8XAWtUratbcBUopw8KqjBd76JyNxrH/IDYIUI7KQDiXunEu6f3/8RZRA+qwhQGikVoWAPYxf1yyNNUhDg+uQtzg38W6UyecVIu/gG6+W/eBeMsDH9rg196N47U3YLvZ3qPIwV3SlHH3+zl0OsjOwNXEd70O9w+wc9uiq1gUdDAhMRzeSQ4r0p9vFLgfBPrNovyjDTFoHPWbYYxYt6dcINDAjyrP1KomUY+ALiryty1yPWJgoAUTzbyzXaQfDwOHsMI="
+  app: lunchandlearnapp
+  on:
+    repo: LunchAndLearn/lunch-and-learn
 
 before_install:
 - docker pull mongo
