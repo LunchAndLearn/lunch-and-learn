@@ -35,6 +35,9 @@ public class AuthenticationServiceTest {
 
     @Test
     public void searchesByUsernameInRepository() {
+        User user = new User("first name", "username");
+        when(userRepository.findByUsername("anyusername")).thenReturn(user);
+
         authenticationService.authenticate(credentialsRequest);
 
         verify(userRepository).findByUsername("anyusername");
@@ -42,7 +45,8 @@ public class AuthenticationServiceTest {
 
     @Test
     public void returnsUserResponseWhenAuthenticateUser() {
-        when(userRepository.findByUsername("anyusername")).thenReturn(new User("first name"));
+        User user = new User("first name", "username");
+        when(userRepository.findByUsername("anyusername")).thenReturn(user);
 
         UserResponse authenticatedUser = authenticationService.authenticate(credentialsRequest);
 

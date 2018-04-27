@@ -22,8 +22,8 @@ public class UserEndpointIntegrationTest {
     private UserRepository userRepository;
 
     @Test
-    public void callsUserEndpoint() throws Exception {
-        User user = new User("User");
+    public void callsUserEndpoint() {
+        User user = new User("User", "username");
         userRepository.save(user);
 
         List<User> allUsers = userRepository.findAll();
@@ -32,7 +32,7 @@ public class UserEndpointIntegrationTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         userRepository.deleteAll();
     }
 

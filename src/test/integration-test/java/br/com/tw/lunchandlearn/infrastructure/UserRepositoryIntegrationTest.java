@@ -28,7 +28,7 @@ public class UserRepositoryIntegrationTest {
 
     @Test
     public void createUser() {
-        User user = new User("New User Name");
+        User user = new User("New User Name", "newusername");
 
         User userSaved = userRepository.save(user);
 
@@ -37,13 +37,14 @@ public class UserRepositoryIntegrationTest {
 
     @Test
     public void findUserByName() {
-        User user = new User("New User Name");
+        User user = new User("New User Name", "newusername");
         userRepository.save(user);
 
         User userFound = userRepository.findByName("New User Name");
 
         assertThat(userFound.id, is(not(nullValue())));
         assertThat(userFound.name, is("New User Name"));
+        assertThat(userFound.username, is("newusername"));
     }
 
     @After
