@@ -1,5 +1,8 @@
 package br.com.tw.lunchandlearn.infrastructure;
 
+import br.com.tw.lunchandlearn.fixture.user.UserEntityFixture;
+import br.com.tw.lunchandlearn.infrastructure.user.UserEntity;
+import br.com.tw.lunchandlearn.infrastructure.user.UserRepository;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,23 +31,30 @@ public class UserRepositoryIntegrationTest {
 
     @Test
     public void createUser() {
-        User user = new User("New User Name", "newusername");
+        UserEntity userEntity = UserEntityFixture.anUserFixture()
+                .withName("Name")
+                .withUser("newusername")
+                .build();
 
-        User userSaved = userRepository.save(user);
+        UserEntity userSaved = userRepository.save(userEntity);
 
         assertThat(userSaved.id, is(not(nullValue())));
     }
 
     @Test
     public void findUserByName() {
-        User user = new User("New User Name", "newusername");
-        userRepository.save(user);
+        UserEntity userEntity = UserEntityFixture.anUserFixture()
+                .withName("Name")
+                .withUser("newusername")
+                .build();
 
-        User userFound = userRepository.findByName("New User Name");
+        userRepository.save(userEntity);
+
+        UserEntity userFound = userRepository.findByFirstName("Name");
 
         assertThat(userFound.id, is(not(nullValue())));
-        assertThat(userFound.name, is("New User Name"));
-        assertThat(userFound.username, is("newusername"));
+        assertThat(userFound.firstName, is("Name"));
+        assertThat(userFound.userName, is("newusername"));
     }
 
     @After

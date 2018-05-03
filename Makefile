@@ -1,17 +1,20 @@
 PROFILE=dev
 
-stop-mongo:
-	-docker stop lunch-and-learn-mongo
-	-docker rm lunch-and-learn-mongo
+stop-mongo-integration:
+	-docker stop lunch-and-learn-mongo-integration
+	-docker rm lunch-and-learn-mongo-integration
 
-start-mongo: stop-mongo
-	docker run -d -p 27017:27017 --name lunch-and-learn-mongo mongo
+start-mongo-integration: stop-mongo-integration
+	docker run -d -p 27018:27017 --name lunch-and-learn-mongo-integration mongo
+
+test: start-mongo-integration
+	./mvnw clean verify -DargLine="-Dspring.profiles.active=integration"
 
 unit-test:
 	./mvnw clean test -DargLine="-Dspring.profiles.active=$(PROFILE)"
 
-test: start-mongo
-	./mvnw clean verify -DargLine="-Dspring.profiles.active=$(PROFILE)"
+start-mongo:
+	docker run -d -p 27017:27017 --name lunch-and-learn-mongo-${PROFILE} mongo
 
-start:
+start: start-mongo
 	./mvnw spring-boot:run -Drun.arguments="--spring.profiles.active=$(PROFILE)"

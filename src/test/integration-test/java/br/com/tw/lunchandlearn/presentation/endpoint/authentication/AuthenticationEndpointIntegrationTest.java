@@ -1,8 +1,8 @@
 package br.com.tw.lunchandlearn.presentation.endpoint.authentication;
 
+import br.com.tw.lunchandlearn.domain.base.exception.ApiExceptionCode;
 import br.com.tw.lunchandlearn.presentation.endpoint.UserResponse;
 import br.com.tw.lunchandlearn.presentation.handler.ApiExceptionResponse;
-import br.com.tw.lunchandlearn.domain.base.exception.ApiExceptionCode;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -34,10 +33,10 @@ public class AuthenticationEndpointIntegrationTest {
 
         ResponseEntity<UserResponse> response = testRestTemplate.postForEntity("http://localhost:" + port + "/login", credentialRequest, UserResponse.class);
 
-        assertThat(response.getStatusCode(), is(HttpStatus.OK));
-        assertThat(response.getBody().firstName, is("Fulano"));
-        assertThat(response.getBody().lastName, is("Ciclano"));
-        assertThat(response.getBody().username, is("fulano123"));
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getBody().firstName).isEqualTo("Fulano");
+        assertThat(response.getBody().lastName).isEqualTo("Ciclano");
+        assertThat(response.getBody().username).isEqualTo("fulano123");
     }
 
     @Test
@@ -49,8 +48,9 @@ public class AuthenticationEndpointIntegrationTest {
 
         ResponseEntity<ApiExceptionResponse> response = testRestTemplate.postForEntity("http://localhost:" + port + "/login", credentialRequest, ApiExceptionResponse.class);
 
-        assertThat(response.getStatusCode(), is(HttpStatus.UNAUTHORIZED));
-        assertThat(response.getBody().code, is(ApiExceptionCode.INVALID_CREDENTIALS.getCode()));
-        assertThat(response.getBody().message, is("Your credentials are invalid."));
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
+        assertThat(response.getBody().code).isEqualTo(ApiExceptionCode.INVALID_CREDENTIALS.getCode());
+        assertThat(response.getBody().message).isEqualTo("Your credentials are invalid.");
     }
+
 }

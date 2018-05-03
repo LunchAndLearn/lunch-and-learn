@@ -1,34 +1,45 @@
 package br.com.tw.lunchandlearn.presentation.endpoint;
 
-import br.com.tw.lunchandlearn.infrastructure.User;
-import br.com.tw.lunchandlearn.infrastructure.UserRepository;
+import br.com.tw.lunchandlearn.fixture.user.UserRequestFixture;
+import br.com.tw.lunchandlearn.infrastructure.user.UserRepository;
+import br.com.tw.lunchandlearn.presentation.request.UserRequest;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class UserEndpointIntegrationTest {
+
+    private TestRestTemplate testRestTemplate = new TestRestTemplate();
+
+    @Autowired
+    private Environment environment;
 
     @Autowired
     private UserRepository userRepository;
 
     @Test
-    public void callsUserEndpoint() {
-        User user = new User("User", "username");
-        userRepository.save(user);
+    public void createUser() throws Exception {
+        String port = environment.getProperty("local.server.port");
 
-        List<User> allUsers = userRepository.findAll();
+        UserRequest user = UserRequestFixture.anUserRequest()
+                .build();
 
-        assertThat(allUsers.size(), is(1));
+        ResponseEntity<UserResponse> response = testRestTemplate.postForEntity("http://localhost:" + port + "/users", user, UserResponse.class);
+
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(response.getBody().firstName, is(user.firstName));
     }
 
     @After

@@ -1,7 +1,8 @@
 package br.com.tw.lunchandlearn.domain.authentication;
 
-import br.com.tw.lunchandlearn.infrastructure.User;
-import br.com.tw.lunchandlearn.infrastructure.UserRepository;
+import br.com.tw.lunchandlearn.fixture.user.UserEntityFixture;
+import br.com.tw.lunchandlearn.infrastructure.user.UserEntity;
+import br.com.tw.lunchandlearn.infrastructure.user.UserRepository;
 import br.com.tw.lunchandlearn.presentation.endpoint.UserResponse;
 import br.com.tw.lunchandlearn.presentation.endpoint.authentication.CredentialsRequest;
 import org.junit.Before;
@@ -12,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -35,18 +35,26 @@ public class AuthenticationServiceTest {
 
     @Test
     public void searchesByUsernameInRepository() {
-        User user = new User("first name", "username");
-        when(userRepository.findByUsername("anyusername")).thenReturn(user);
+        UserEntity user = UserEntityFixture.anUserFixture()
+                .withName("first name")
+                .withUser("username")
+                .build();
+
+        when(userRepository.findByUserName("anyusername")).thenReturn(user);
 
         authenticationService.authenticate(credentialsRequest);
 
-        verify(userRepository).findByUsername("anyusername");
+        verify(userRepository).findByUserName("anyusername");
     }
 
     @Test
     public void returnsUserResponseWhenAuthenticateUser() {
-        User user = new User("first name", "username");
-        when(userRepository.findByUsername("anyusername")).thenReturn(user);
+        UserEntity user = UserEntityFixture.anUserFixture()
+                .withName("first name")
+                .withUser("username")
+                .build();
+
+        when(userRepository.findByUserName("anyusername")).thenReturn(user);
 
         UserResponse authenticatedUser = authenticationService.authenticate(credentialsRequest);
 

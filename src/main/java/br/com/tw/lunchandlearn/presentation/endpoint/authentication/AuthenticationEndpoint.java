@@ -48,4 +48,5 @@ public class AuthenticationEndpoint {
     private boolean isValidCredentials(CredentialsRequest credentialsRequest) {
         return credentialsRequest.username.equals(USERNAME) && passwordEncoder.matches(credentialsRequest.password, ENCRYPTED);
     }
+
 }
