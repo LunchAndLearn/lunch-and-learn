@@ -6,7 +6,6 @@ import br.com.tw.lunchandlearn.infrastructure.user.UserEntity;
 import br.com.tw.lunchandlearn.infrastructure.user.UserEntityFactory;
 import br.com.tw.lunchandlearn.infrastructure.user.UserRepository;
 import br.com.tw.lunchandlearn.presentation.request.UserRequest;
-import br.com.tw.lunchandlearn.presentation.response.UserResponse;
 import br.com.tw.lunchandlearn.presentation.response.UserResponseFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -62,7 +61,7 @@ public class UserEndpointTest {
         User savedUser = mock(User.class);
 
         UserResponse expectedUserResponse = new UserResponse();
-        expectedUserResponse.name = "name";
+        expectedUserResponse.firstName = "name";
 
         when(userFactory.fromUserRequest(userRequest)).thenReturn(user);
         when(userEntityFactory.fromUser(user)).thenReturn(userEntity);
@@ -73,7 +72,7 @@ public class UserEndpointTest {
 
         UserResponse actualUserResponse = userEndpoint.createUser(userRequest);
 
-        assertThat(actualUserResponse.name).isEqualTo(expectedUserResponse.name);
+        assertThat(actualUserResponse.firstName).isEqualTo(expectedUserResponse.firstName);
     }
 
 }

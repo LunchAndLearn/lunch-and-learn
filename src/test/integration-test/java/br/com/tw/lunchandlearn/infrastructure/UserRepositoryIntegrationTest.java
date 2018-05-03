@@ -31,25 +31,30 @@ public class UserRepositoryIntegrationTest {
 
     @Test
     public void createUser() {
-        UserEntity user = UserEntityFixture.anUserFixture()
+        UserEntity userEntity = UserEntityFixture.anUserFixture()
+                .withName("Name")
+                .withUser("newusername")
                 .build();
 
-        UserEntity userSaved = userRepository.save(user);
+        UserEntity userSaved = userRepository.save(userEntity);
 
         assertThat(userSaved.id, is(not(nullValue())));
     }
 
     @Test
     public void findUserByName() {
-        UserEntity user = UserEntityFixture.anUserFixture()
+        UserEntity userEntity = UserEntityFixture.anUserFixture()
+                .withName("Name")
+                .withUser("newusername")
                 .build();
 
-        userRepository.save(user);
+        userRepository.save(userEntity);
 
-        UserEntity userFound = userRepository.findByName("Name");
+        UserEntity userFound = userRepository.findByFirstName("Name");
 
         assertThat(userFound.id, is(not(nullValue())));
-        assertThat(userFound.name, is("Name"));
+        assertThat(userFound.firstName, is("Name"));
+        assertThat(userFound.userName, is("newusername"));
     }
 
     @After

@@ -13,9 +13,9 @@ public class UserEntityFactory {
 
         UserEntity userEntity = new UserEntity();
         userEntity.id = user.getId();
-        userEntity.name = user.getName();
+        userEntity.firstName = user.getName();
         userEntity.lastName = user.getLastName();
-        userEntity.user = user.getTwUser();
+        userEntity.userName = user.getTwUser();
         userEntity.password = user.getPassword().getValue();
         userEntity.office = office;
 

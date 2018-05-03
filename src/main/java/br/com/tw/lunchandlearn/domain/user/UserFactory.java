@@ -16,7 +16,7 @@ public class UserFactory {
         Password password = new Password(userEntity.password);
         Office office = new Office(userEntity.office.name);
 
-        User user = new User(userEntity.id, userEntity.name, userEntity.lastName, userEntity.user, password, office);
+        User user = new User(userEntity.id, userEntity.firstName, userEntity.lastName, userEntity.userName, password, office);
 
         return user;
     }

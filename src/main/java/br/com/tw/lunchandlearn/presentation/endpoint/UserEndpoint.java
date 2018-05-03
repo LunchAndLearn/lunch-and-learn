@@ -6,7 +6,6 @@ import br.com.tw.lunchandlearn.infrastructure.user.UserEntity;
 import br.com.tw.lunchandlearn.infrastructure.user.UserEntityFactory;
 import br.com.tw.lunchandlearn.infrastructure.user.UserRepository;
 import br.com.tw.lunchandlearn.presentation.request.UserRequest;
-import br.com.tw.lunchandlearn.presentation.response.UserResponse;
 import br.com.tw.lunchandlearn.presentation.response.UserResponseFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,16 +46,12 @@ public class UserEndpoint {
     public UserResponse createUser(@Valid @RequestBody UserRequest userRequest) {
         User user = userFactory.fromUserRequest(userRequest);
 
-        UserEntity savedUser = saveUser(user);
+        UserEntity userEntityToSave = userEntityFactory.fromUser(user);
+        UserEntity savedUser = userRepository.save(userEntityToSave);
 
         user = userFactory.fromUserEntity(savedUser);
 
         return userResponseFactory.fromUser(user);
-    }
-
-    private UserEntity saveUser(User user) {
-        UserEntity userEntityToSave = userEntityFactory.fromUser(user);
-        return userRepository.save(userEntityToSave);
     }
 
 }

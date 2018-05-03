@@ -10,11 +10,11 @@ public class UserEntity {
     @Id
     public String id;
 
-    public String name;
+    public String firstName;
 
     public String lastName;
 
-    public String user;
+    public String userName;
 
     public String password;
 

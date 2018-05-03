@@ -24,9 +24,9 @@ public class UserEntityFactoryTest {
         UserEntity actualUserEntity = userEntityFactory.fromUser(user);
 
         assertThat(actualUserEntity.id).isEqualTo(null);
-        assertThat(actualUserEntity.name).isEqualTo(user.getName());
+        assertThat(actualUserEntity.firstName).isEqualTo(user.getName());
         assertThat(actualUserEntity.lastName).isEqualTo(user.getLastName());
-        assertThat(actualUserEntity.user).isEqualTo(user.getTwUser());
+        assertThat(actualUserEntity.userName).isEqualTo(user.getTwUser());
         assertThat(actualUserEntity.password).isEqualTo(user.getPassword().getValue());
         assertThat(actualUserEntity.office.name).isEqualTo(user.getOffice().getName());
     }

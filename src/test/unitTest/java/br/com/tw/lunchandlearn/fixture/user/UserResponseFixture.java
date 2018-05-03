@@ -1,22 +1,18 @@
 package br.com.tw.lunchandlearn.fixture.user;
 
-import br.com.tw.lunchandlearn.presentation.response.UserResponse;
+import br.com.tw.lunchandlearn.presentation.endpoint.UserResponse;
 
 public class UserResponseFixture {
 
     private final UserResponse userResponse;
 
     private UserResponseFixture() {
-        UserResponse.Office office = new UserResponse.Office();
-        office.name = "Belo Horizonte";
-
         userResponse = new UserResponse();
         userResponse.id = "1";
-        userResponse.name = "Name";
+        userResponse.firstName = "Name";
         userResponse.lastName = "Last Name";
-        userResponse.user = "nlast";
-        userResponse.password = "123";
-        userResponse.office = office;
+        userResponse.username = "nlast";
+        userResponse.office = "Belo Horizonte";
     }
 
     public static UserResponseFixture anUserResponse() {

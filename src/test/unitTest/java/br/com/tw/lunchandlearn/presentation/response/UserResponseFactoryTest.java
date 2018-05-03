@@ -3,6 +3,7 @@ package br.com.tw.lunchandlearn.presentation.response;
 import br.com.tw.lunchandlearn.domain.user.User;
 import br.com.tw.lunchandlearn.fixture.user.UserFixture;
 import br.com.tw.lunchandlearn.fixture.user.UserResponseFixture;
+import br.com.tw.lunchandlearn.presentation.endpoint.UserResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -30,11 +31,10 @@ public class UserResponseFactoryTest {
         UserResponse actualUserResponse = userResponseFactory.fromUser(user);
 
         assertThat(actualUserResponse.id).isEqualTo(expectedUserResponse.id);
-        assertThat(actualUserResponse.name).isEqualTo(expectedUserResponse.name);
+        assertThat(actualUserResponse.firstName).isEqualTo(expectedUserResponse.firstName);
         assertThat(actualUserResponse.lastName).isEqualTo(expectedUserResponse.lastName);
-        assertThat(actualUserResponse.user).isEqualTo(expectedUserResponse.user);
-        assertThat(actualUserResponse.password).isEqualTo(expectedUserResponse.password);
-        assertThat(actualUserResponse.office.name).isEqualTo(expectedUserResponse.office.name);
+        assertThat(actualUserResponse.username).isEqualTo(expectedUserResponse.username);
+        assertThat(actualUserResponse.office).isEqualTo(expectedUserResponse.office);
     }
 
     @Test

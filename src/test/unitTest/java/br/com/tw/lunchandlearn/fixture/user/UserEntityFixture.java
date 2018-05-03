@@ -11,9 +11,9 @@ public class UserEntityFixture {
         userEntity = new UserEntity();
 
         userEntity.id = "1";
-        userEntity.name = "Name";
+        userEntity.firstName = "Name";
         userEntity.lastName = "Last Name";
-        userEntity.user = "nlast";
+        userEntity.userName = "nlast";
         userEntity.password = "123";
         userEntity.office = OfficeEntityFixture.anOffice()
                 .build();
@@ -21,6 +21,16 @@ public class UserEntityFixture {
 
     public static UserEntityFixture anUserFixture() {
         return new UserEntityFixture();
+    }
+
+    public UserEntityFixture withName(String name) {
+        userEntity.firstName = name;
+        return this;
+    }
+
+    public UserEntityFixture withUser(String username) {
+        userEntity.userName = username;
+        return this;
     }
 
     public UserEntity build() {

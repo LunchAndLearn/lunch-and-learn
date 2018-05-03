@@ -1,6 +1,7 @@
 package br.com.tw.lunchandlearn.presentation.response;
 
 import br.com.tw.lunchandlearn.domain.user.User;
+import br.com.tw.lunchandlearn.presentation.endpoint.UserResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,16 +12,12 @@ import static java.util.stream.Collectors.toList;
 public class UserResponseFactory {
 
     public UserResponse fromUser(User user) {
-        UserResponse.Office office = new UserResponse.Office();
-        office.name = user.getOffice().getName();
-
         UserResponse userResponse = new UserResponse();
         userResponse.id = user.getId();
-        userResponse.name = user.getName();
+        userResponse.firstName = user.getName();
         userResponse.lastName = user.getLastName();
-        userResponse.user = user.getTwUser();
-        userResponse.password = user.getPassword().getValue();
-        userResponse.office = office;
+        userResponse.username = user.getTwUser();
+        userResponse.office = user.getOffice().getName();
 
         return userResponse;
     }
