@@ -46,11 +46,11 @@ public class UserFactoryTest {
 
         List<User> users = userFactory.fromUserEntities(asList(userEntity));
 
-        assertThat(users.size()).isEqualTo(1);
+        assertThat(users).hasSize(1);
     }
 
     @Test
-    public void createsUserFromUserRequest() throws Exception {
+    public void createsUserFromUserRequest() {
         User expectedUser = UserFixture.anUser()
                 .withId(null)
                 .build();

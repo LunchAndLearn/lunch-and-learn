@@ -25,6 +25,14 @@ public class User {
         this.office = office;
     }
 
+    public User(String firstName, String lastName, String thoughtWorksUser, Password password, Office office) {
+        this.name = firstName;
+        this.lastName = lastName;
+        this.twUser = thoughtWorksUser;
+        this.password = password;
+        this.office = office;
+    }
+
     public String getId() {
         return id;
     }

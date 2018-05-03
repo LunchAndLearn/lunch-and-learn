@@ -44,7 +44,7 @@ public class UserResponseFactoryTest {
 
         List<UserResponse> actualUserResponses = userResponseFactory.fromUsers(asList(user));
 
-        assertThat(actualUserResponses.size()).isEqualTo(1);
+        assertThat(actualUserResponses).hasSize(1);
     }
 
 }

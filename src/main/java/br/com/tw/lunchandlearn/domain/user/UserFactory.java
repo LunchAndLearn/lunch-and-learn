@@ -31,7 +31,7 @@ public class UserFactory {
         Password password = new Password(userRequest.password);
         Office office = new Office(userRequest.office.name);
 
-        User user = new User(null, userRequest.firstName, userRequest.lastName, userRequest.thoughtWorksUser, password, office);
+        User user = new User(userRequest.firstName, userRequest.lastName, userRequest.thoughtWorksUser, password, office);
 
         return user;
     }

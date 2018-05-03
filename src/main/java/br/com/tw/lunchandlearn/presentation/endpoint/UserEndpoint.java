@@ -47,12 +47,16 @@ public class UserEndpoint {
     public UserResponse createUser(@Valid @RequestBody UserRequest userRequest) {
         User user = userFactory.fromUserRequest(userRequest);
 
-        UserEntity userEntityToSave = userEntityFactory.fromUser(user);
-        UserEntity savedUser = userRepository.save(userEntityToSave);
+        UserEntity savedUser = saveUser(user);
 
         user = userFactory.fromUserEntity(savedUser);
 
         return userResponseFactory.fromUser(user);
+    }
+
+    private UserEntity saveUser(User user) {
+        UserEntity userEntityToSave = userEntityFactory.fromUser(user);
+        return userRepository.save(userEntityToSave);
     }
 
 }
